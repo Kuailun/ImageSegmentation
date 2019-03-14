@@ -166,8 +166,8 @@ display()
 
 #Set up
 img_shape=(256,256,3)
-batch_size=3
-epochs=5
+batch_size=10
+epochs=1
 
 
 def _precoss_pathnames(fname, label_path):

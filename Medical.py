@@ -119,11 +119,12 @@ def getNames(dir):
     for i in range(len(dirs)):
         dd=os.listdir(dir+"\\"+dirs[i])
         rett=[]
-        for j in range(len(dd)):
-            if(j==0 or j==6):
-                Convert(dir+"\\"+dirs[i]+"\\",dd[j])
-                rett.append(dir+"\\"+dirs[i]+"\\"+dd[j]+"\\"+dd[j]+".jpg")
-        ret.append(rett)
+        datadir=os.listdir(dir+"\\"+dirs[i]+"\\"+dd[0])
+        labeldir = os.listdir(dir + "\\" + dirs[i] + "\\" + dd[5])
+        for j in range(len(datadir)):
+            rett.append(dir+"\\"+dirs[i]+"\\"+dd[0]+"\\"+datadir[j])
+            rett.append(dir + "\\" + dirs[i] + "\\" + dd[5] + "\\" + labeldir[j])
+            ret.append(rett)
     return ret
 def Convert(dir,name):
     img = nib.load(dir+"\\"+name+"\\"+name+".nii")
@@ -157,7 +158,7 @@ x_train_filenames,x_val_filenames,y_train_filenames,y_val_filenames=\
         train_test_split(x_train_filenames,y_train_filenames,test_size=0.2,random_state=42)
 
 """
-competition_name=os.getcwd()+"\\data\\ISLES 2018\\TRAINING"
+competition_name=os.getcwd()+"\\imageData\\"
 ids_train=getNames(competition_name)
 #ids_train = ids_train[0:5]
 x_train_filenames=[]
